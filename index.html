@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi Bubby c:</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffebf0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 5%;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .yes-btn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        .no-btn {
+            background-color: #999;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        #fireworks, #floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <img src="wedding.jpg" alt="photo1" style='width: 30%; height: 30%; padding: 0%;'>
+    <div class="container" id="page1">
+        <h1>TO: THE MOST AMAZING GIRLFRIEND IN THE WORLD</h1>
+        <button onclick="goToPage2()">CLICK HERE</button>
+    </div>
+
+    <div class="container hidden" id="page2">
+        <h2>WOULD YOU BE MY VALENTINE AND JOIN ME ON A DATE FOR FRIDAY, FEBRUARY 14TH?</h2>
+        <button class="yes-btn" onclick="sayYes()">YES</button>
+        <button class="no-btn" onclick="sayNo()">NO</button>
+    </div>
+
+    <div class="container hidden" id="yesPage">
+        <h1>GREAT, I'LL PICK YOU UP AT 6:30, SEE YOU THEN MY LOVE ❤️</h1>
+        <img src='flower.JPG' style='width:20%; height: 30vh;'>
+    </div>
+
+    <div id="fireworks" class="hidden"></div>
+    <div id="floating-hearts" class="hidden"></div>
+
+    <script>
+        function goToPage2() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+        }
+
+        function sayYes() {
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('yesPage').classList.remove('hidden');
+            document.body.style.backgroundColor = "#ff4d6d";
+            launchFireworks();
+            sendEmail();
+        }
+
+        function sayNo() {
+            let noButton = document.querySelector('.no-btn');
+            let phrases = ["ARE YOU SURE?", "WHYYYY??", "DON'T CLICK ME AGAIN", "HOW COULD THIS HAPPEN TO ME", "YOU'RE BREAKING MY HEART"];
+            if (noButton.dataset.index === undefined) {
+                noButton.dataset.index = 0;
+            } else {
+                noButton.dataset.index++;
+            }
+            let index = parseInt(noButton.dataset.index);
+            if (index < phrases.length) {
+                noButton.textContent = phrases[index];
+            } else {
+                document.body.innerHTML = "<img src='renee.jpg' style='width:100%;height:100vh;'>";
+            }
+        }
+
+       
+
+        function sendEmail() {
+            window.location.href = "mailto:travis.mounsy@gmail.com?subject=Valentine's Confirmation&body=She said YES!";
+        }
+    </script>
+</body>
+</html>
